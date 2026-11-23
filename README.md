@@ -97,10 +97,10 @@ d:\Git\ossw2\
 
 ---
 
-### 6. GitHub 仓库与在线访问 / 代码仓库与托管
+### 6. GitHub 저장소 및 온라인 시연 / GitHub 仓库与在线访问
 
-* **GitHub 仓库地址 / 源码仓库**: [https://github.com/xueyingxing/ossw2.git](https://github.com/xueyingxing/ossw2.git)
-* **GitHub Pages 在线体验 (开启后)**: `https://xueyingxing.github.io/ossw2/`
-  * (进入 GitHub 仓库 Settings -> Pages -> Source 选择 `main` 分支 `/ (root)` 保存即可免费启用在线演示)
-
+* **GitHub 仓库地址 / GitHub 저장소 주소**: [https://github.com/xueyingxing/ossw2.git](https://github.com/xueyingxing/ossw2.git)
+* **온라인 체험 링크 / 在线演示体验 (GitHub Pages)**:
+  * GitHub 저장소의 `Settings` -> `Pages` -> `Branch`에서 `main` 브랜치 `/ (root)`를 선택하고 저장하면 즉시 전 세계 어디서나 온라인으로 감상할 수 있습니다:
+  * `https://xueyingxing.github.io/ossw2/`
 
