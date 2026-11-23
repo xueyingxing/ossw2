@@ -1,0 +1,1899 @@
+/* ==========================================================================
+   燕云十六声 / Where Winds Meet / 연운십육성
+   동양 무협 스타일 공식 테마 CSS / 东方玄幻水墨风格主题
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0a0c10;
+    --bg-card: rgba(18, 22, 30, 0.85);
+    --bg-card-hover: rgba(28, 34, 46, 0.95);
+    --gold-primary: #d4af37;
+    --gold-bright: #ffd700;
+    --gold-dim: #998033;
+    --cinnabar-red: #c93b3b;
+    --cinnabar-glow: rgba(201, 59, 59, 0.4);
+    --jade-green: #2d6a4f;
+    --ink-black: #050608;
+    --text-light: #f3f4f6;
+    --text-muted: #9ca3af;
+    --text-gold: #e6ca65;
+    --border-gold: rgba(212, 175, 55, 0.3);
+    --border-gold-solid: #d4af37;
+    --font-serif: "Noto Serif KR", "Noto Serif SC", "Songti SC", "SimSun", "Batang", serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Malgun Gothic", "Microsoft YaHei", sans-serif;
+    --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-wuxia: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+/* 기본 리셋 및 전역 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 40%, rgba(201, 59, 59, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(45, 106, 79, 0.05) 0%, transparent 50%);
+}
+
+/* 파티클 캔버스 배경 */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 상단 고정 네비게이션바 */
+.wuxia-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 12, 16, 0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    transition: var(--transition-smooth);
+}
+
+.wuxia-navbar.scrolled {
+    background: rgba(10, 12, 16, 0.95);
+    border-bottom-color: var(--gold-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.brand-seal {
+    width: 38px;
+    height: 38px;
+    background: var(--cinnabar-red);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 2px solid var(--gold-bright);
+    box-shadow: 0 0 10px var(--cinnabar-glow);
+}
+
+.brand-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-ko {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+}
+
+.brand-zh {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.3rem 0.6rem;
+    transition: var(--transition-smooth);
+    border-radius: 4px;
+}
+
+.nav-ko {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.nav-zh {
+    font-size: 0.75rem;
+    color: var(--gold-primary);
+}
+
+.nav-item-link:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-item-link:hover .nav-ko {
+    color: var(--gold-bright);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.audio-toggle-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition-smooth);
+}
+
+.audio-toggle-btn:hover {
+    background: var(--gold-primary);
+    color: var(--ink-black);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--gold-bright);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   히어로 섹션 / Hero Section
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    background: 
+        radial-gradient(circle at center, rgba(10, 12, 16, 0.4) 0%, rgba(10, 12, 16, 0.95) 100%),
+        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    z-index: 2;
+}
+
+.hero-overlay-wuxia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(10,12,16,0.3) 0%, rgba(10,12,16,0.85) 80%, var(--bg-dark) 100%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.hero-crest-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.4rem;
+    background: rgba(201, 59, 59, 0.2);
+    border: 1px solid var(--cinnabar-red);
+    border-radius: 30px;
+    color: #ff9b9b;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(5px);
+    animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from { box-shadow: 0 0 5px rgba(201, 59, 59, 0.3); }
+    to { box-shadow: 0 0 18px rgba(201, 59, 59, 0.7); }
+}
+
+.hero-main-title {
+    font-family: var(--font-serif);
+    font-size: 4.2rem;
+    font-weight: 900;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+.hero-main-title .gold-text {
+    background: linear-gradient(135deg, #ffd700 0%, #d4af37 60%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-sub-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--text-gold);
+    letter-spacing: 6px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.hero-poetic-slogan {
+    font-size: 1.25rem;
+    color: #e5e7eb;
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.slogan-ko {
+    font-style: italic;
+    color: #ffffff;
+    font-size: 1.35rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.slogan-zh {
+    color: var(--gold-bright);
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+}
+
+.hero-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8420 100%);
+    color: var(--ink-black);
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+}
+
+.btn-secondary {
+    background: rgba(18, 22, 30, 0.8);
+    color: var(--gold-bright);
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: 1px solid var(--gold-primary);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold-bright);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.hero-meta-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(18, 22, 30, 0.7);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.meta-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+}
+
+.stat-title-ko {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gold-bright);
+}
+
+.stat-title-zh {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   공통 섹션 스타일 / Common Section Styles
+   ========================================================================== */
+.wuxia-section {
+    position: relative;
+    padding: 6.5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.section-header-bilingual {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-seal-tag {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+}
+
+.section-title-ko {
+    font-family: var(--font-serif);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.section-title-zh {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+}
+
+.section-desc-bilingual {
+    max-width: 750px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.desc-ko {
+    color: #e2e8f0;
+}
+
+.desc-zh {
+    font-size: 0.95rem;
+    color: #94a3b8;
+}
+
+/* ==========================================================================
+   세계관 및 역사 섹션 / World & Lore Section
+   ========================================================================== */
+.lore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.lore-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 2.2rem;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.lore-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold-primary);
+    transition: var(--transition-smooth);
+}
+
+.lore-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-wuxia);
+    border-color: var(--gold-bright);
+}
+
+.lore-card:hover::before {
+    width: 8px;
+    background: var(--cinnabar-red);
+}
+
+.lore-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.lore-seal {
+    font-size: 1.8rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+}
+
+.lore-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.lore-title-ko {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.lore-title-zh {
+    font-size: 0.9rem;
+    color: var(--gold-primary);
+}
+
+.lore-body-ko {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin-bottom: 0.8rem;
+    line-height: 1.65;
+}
+
+.lore-body-zh {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.lore-footer-badge {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--gold-bright);
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    align-self: flex-start;
+}
+
+/* ==========================================================================
+   인터랙티브 점혈 & 무공 시뮬레이터 섹션 / Acupoints & Skills
+   ========================================================================== */
+.simulator-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-wuxia);
+}
+
+.acupoint-interactive-stage {
+    position: relative;
+    height: 520px;
+    background: radial-gradient(circle at center, rgba(30, 41, 59, 0.4) 0%, rgba(10, 12, 16, 0.9) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 인체 실루엣 SVG 배경 */
+.body-silhouette-svg {
+    position: absolute;
+    width: 280px;
+    height: 480px;
+    opacity: 0.45;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.3));
+}
+
+.acupoint-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.pin-dot {
+    width: 14px;
+    height: 14px;
+    background: var(--cinnabar-red);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff4d4d;
+    transition: var(--transition-smooth);
+}
+
+.pin-pulse {
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-bright);
+    animation: pinPulse 2s infinite ease-out;
+}
+
+@keyframes pinPulse {
+    0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+
+.pin-name {
+    background: rgba(10, 12, 16, 0.85);
+    border: 1px solid var(--border-gold);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.acupoint-pin:hover .pin-dot,
+.acupoint-pin.active .pin-dot {
+    background: var(--gold-bright);
+    box-shadow: 0 0 16px #ffd700;
+    transform: scale(1.4);
+}
+
+.acupoint-pin.active .pin-name {
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    background: rgba(20, 24, 32, 0.95);
+}
+
+/* 기혈 플래시 효과 */
+.qi-flash-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    animation: flashBurst 1s forwards ease-out;
+}
+
+.flash-stun { background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%); }
+.flash-seal { background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%); }
+.flash-burst { background: radial-gradient(circle, rgba(239, 68, 68, 0.5) 0%, transparent 70%); }
+.flash-disarm { background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%); }
+.flash-slow { background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%); }
+
+@keyframes flashBurst {
+    0% { opacity: 0; transform: scale(0.8); }
+    30% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* 점혈 상세 박스 */
+.acupoint-detail-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.acupoint-card {
+    background: rgba(10, 12, 16, 0.6);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.card-badge {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    background: rgba(201, 59, 59, 0.2);
+    border: 1px solid var(--cinnabar-red);
+    color: #ff9b9b;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.point-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+}
+
+.point-desc-ko {
+    font-size: 1rem;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+}
+
+.point-desc-zh {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.point-effect-badge {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    color: var(--gold-bright);
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.cast-acupoint-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: linear-gradient(135deg, #c93b3b 0%, #871919 100%);
+    color: #fff;
+    border: 1px solid #ff7b7b;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(201, 59, 59, 0.4);
+    transition: var(--transition-smooth);
+}
+
+.cast-acupoint-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(201, 59, 59, 0.7);
+}
+
+/* 무공 시연 서브 섹션 */
+.skills-showcase-wrap {
+    margin-top: 3.5rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    padding-top: 3.5rem;
+}
+
+.skills-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+}
+
+.wuxia-skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skill-selector-card {
+    background: rgba(18, 22, 30, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 6px;
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.skill-selector-card:hover {
+    background: rgba(28, 34, 46, 0.9);
+    border-color: var(--gold-primary);
+    transform: translateX(6px);
+}
+
+.skill-selector-card.selected {
+    background: rgba(28, 34, 46, 0.95);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.skill-tag {
+    font-size: 0.75rem;
+    color: var(--gold-primary);
+    margin-bottom: 0.3rem;
+}
+
+.skill-title {
+    font-size: 1.15rem;
+    color: var(--text-light);
+}
+
+.skill-title-zh {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.skill-desc-preview {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.6rem;
+}
+
+.try-skill-btn {
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    padding: 0.35rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.skill-demo-screen {
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--border-gold);
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    overflow: hidden;
+    background: #0d1117;
+}
+
+.skill-demo-screen.anim-taiji {
+    background: radial-gradient(circle at center, #1b2838 0%, #0a0d14 100%);
+}
+
+.skill-demo-screen.anim-qinggong {
+    background: radial-gradient(circle at center, #132e22 0%, #08140e 100%);
+}
+
+.skill-demo-screen.anim-roar {
+    background: radial-gradient(circle at center, #3d2314 0%, #170d07 100%);
+}
+
+.skill-demo-screen.anim-sword {
+    background: radial-gradient(circle at center, #2e1e3b 0%, #100b14 100%);
+}
+
+.circular-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    border: 2px dashed var(--gold-primary);
+    border-radius: 50%;
+    animation: rotateAura 12s infinite linear;
+    opacity: 0.4;
+}
+
+@keyframes rotateAura {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.demo-content-box {
+    position: relative;
+    z-index: 5;
+}
+
+.demo-badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    background: var(--gold-primary);
+    color: var(--ink-black);
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+}
+
+.demo-content-box h2 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.2rem;
+}
+
+.demo-content-box h3 {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+}
+
+.demo-ko {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    margin-bottom: 0.3rem;
+}
+
+.demo-zh {
+    font-size: 0.88rem;
+    color: #94a3b8;
+}
+
+/* ==========================================================================
+   무기 및 문파 섹션 / Weapons & Sects
+   ========================================================================== */
+.weapons-sect-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.weapon-arsenal-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.weapon-tabs-list {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.weapon-tab-btn {
+    background: rgba(10, 12, 16, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 6px;
+    padding: 0.8rem 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition-smooth);
+}
+
+.weapon-tab-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gold-primary);
+}
+
+.weapon-tab-btn.active {
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, rgba(10, 12, 16, 0.9) 100%);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
+
+.w-icon {
+    font-size: 1.6rem;
+}
+
+.w-ko {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+.w-zh {
+    font-size: 0.75rem;
+    color: var(--gold-primary);
+}
+
+.weapon-showcase-card {
+    background: rgba(10, 12, 16, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.w-big-icon-wrap {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.w-large-icon {
+    font-size: 3.5rem;
+    z-index: 2;
+}
+
+.w-glow-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    animation: ringGlow 3s infinite alternate;
+}
+
+@keyframes ringGlow {
+    from { transform: scale(0.9); opacity: 0.5; }
+    to { transform: scale(1.3); opacity: 0.9; }
+}
+
+.w-hero-name-ko {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.2rem;
+}
+
+.w-hero-name-zh {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.w-hero-desc-ko {
+    font-size: 1rem;
+    color: #e2e8f0;
+    max-width: 650px;
+    margin: 0 auto 0.4rem;
+}
+
+.w-hero-desc-zh {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    max-width: 650px;
+    margin: 0 auto 1.8rem;
+}
+
+.w-stats-meters {
+    max-width: 550px;
+    margin: 0 auto 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: left;
+}
+
+.stat-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-lbl {
+    width: 170px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.stat-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #ffd700);
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+.stat-val {
+    width: 35px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--gold-bright);
+    text-align: right;
+}
+
+/* 문파 그리드 */
+.sects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.sect-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 1.8rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.sect-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-6px);
+    border-color: var(--gold-bright);
+    box-shadow: var(--shadow-wuxia);
+}
+
+.sect-badge {
+    font-size: 0.75rem;
+    color: var(--gold-bright);
+    background: rgba(212, 175, 55, 0.12);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.sect-title-ko {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+}
+
+.sect-title-zh {
+    font-size: 0.95rem;
+    color: var(--gold-primary);
+    margin-bottom: 0.8rem;
+}
+
+.sect-desc-ko {
+    font-size: 0.88rem;
+    color: #cbd5e1;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+}
+
+.sect-desc-zh {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+}
+
+.sect-footer-link {
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: var(--gold-bright);
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   강호 지도 섹션 / Jianghu Map Section
+   ========================================================================== */
+.map-interactive-container {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-wuxia);
+}
+
+.map-viewport {
+    position: relative;
+    min-height: 480px;
+    background: 
+        radial-gradient(circle at 60% 40%, rgba(184, 134, 11, 0.15) 0%, transparent 60%),
+        #12151d url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-cartography-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.map-marker-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.marker-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8));
+    transition: var(--transition-smooth);
+}
+
+.marker-pulse {
+    position: absolute;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-bright);
+    animation: pinPulse 2.5s infinite;
+}
+
+.marker-title {
+    background: rgba(10, 12, 16, 0.9);
+    border: 1px solid var(--border-gold);
+    color: var(--text-light);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.2rem;
+    white-space: nowrap;
+}
+
+.map-marker-pin:hover .marker-icon,
+.map-marker-pin.active .marker-icon {
+    transform: scale(1.3) translateY(-4px);
+}
+
+.map-marker-pin.active .marker-title {
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+}
+
+/* 지역 상세 정보 카드 */
+.region-detail-card {
+    background: rgba(10, 12, 16, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.region-meta-header {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.danger-badge {
+    background: rgba(201, 59, 59, 0.2);
+    color: #ff9b9b;
+    border: 1px solid var(--cinnabar-red);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.climate-badge {
+    background: rgba(45, 106, 79, 0.25);
+    color: #8ce3b9;
+    border: 1px solid var(--jade-green);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.region-title-ko {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.2rem;
+}
+
+.region-title-zh {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.region-narrative-ko {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    margin-bottom: 0.4rem;
+}
+
+.region-narrative-zh {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.region-highlights {
+    background: rgba(18, 22, 30, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.region-highlights h5 {
+    color: var(--gold-bright);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.region-highlights ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.feat-bullet {
+    color: var(--gold-primary);
+    margin-right: 0.3rem;
+}
+
+.explore-region-btn {
+    margin-top: auto;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #d4af37 0%, #a67c1e 100%);
+    color: var(--ink-black);
+    border: none;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.explore-region-btn:hover {
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   갤러리 섹션 / Visual Gallery
+   ========================================================================== */
+.gallery-filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.gallery-filter-btn {
+    background: rgba(18, 22, 30, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    color: var(--text-light);
+    padding: 0.6rem 1.4rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.gallery-filter-btn:hover {
+    border-color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.gallery-filter-btn.active {
+    background: var(--gold-primary);
+    color: var(--ink-black);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+}
+
+.gallery-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.gallery-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.gallery-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold-bright);
+    box-shadow: var(--shadow-wuxia);
+}
+
+.gallery-image-frame {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-card:hover .gallery-image-frame img {
+    transform: scale(1.08);
+}
+
+.gallery-fallback-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.art-icon {
+    font-size: 3rem;
+}
+
+.art-badge {
+    color: var(--gold-bright);
+    font-size: 0.85rem;
+    border: 1px solid var(--gold-primary);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+}
+
+.gallery-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.gallery-card:hover .gallery-hover-overlay {
+    opacity: 1;
+}
+
+.view-pill {
+    background: rgba(10, 12, 16, 0.9);
+    border: 1px solid var(--gold-bright);
+    color: var(--gold-bright);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.gallery-card-caption {
+    padding: 1.2rem;
+}
+
+.cat-pill {
+    font-size: 0.75rem;
+    color: var(--gold-primary);
+    margin-bottom: 0.4rem;
+    display: inline-block;
+}
+
+.card-ko {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.2rem;
+}
+
+.card-zh {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* 라이트박스 모달 */
+.gallery-lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 6, 8, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-lightbox-modal.active {
+    display: flex;
+}
+
+.lightbox-content-wrap {
+    position: relative;
+    max-width: 900px;
+    width: 90%;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-primary);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+}
+
+.lightbox-img-box {
+    width: 100%;
+    max-height: 520px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-img-box img {
+    max-width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+}
+
+.lightbox-caption-box {
+    padding: 1.5rem 2rem;
+}
+
+.lightbox-caption-box h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.2rem;
+}
+
+.lightbox-caption-box h4 {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 0.6rem;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-bright);
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.lightbox-nav-btn.prev { left: 15px; }
+.lightbox-nav-btn.next { right: 15px; }
+
+/* ==========================================================================
+   강호 심리 퀴즈 섹션 / Jianghu Quiz
+   ========================================================================== */
+.quiz-wrapper {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.quiz-interactive-card {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-primary);
+    border-radius: 12px;
+    padding: 3rem 2.5rem;
+    box-shadow: var(--shadow-wuxia);
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-progress-bar-wrap {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.quiz-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #c93b3b, #d4af37);
+    transition: width 0.4s ease;
+}
+
+.quiz-meta-step {
+    font-size: 0.85rem;
+    color: var(--gold-primary);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.quiz-q-ko {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+}
+
+.quiz-q-zh {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.quiz-options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.quiz-option-btn {
+    background: rgba(10, 12, 16, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-align: left;
+    transition: var(--transition-smooth);
+}
+
+.quiz-option-btn:hover {
+    background: rgba(28, 34, 46, 0.95);
+    border-color: var(--gold-bright);
+    transform: translateX(6px);
+}
+
+.opt-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-bright);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.opt-ko {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.opt-zh {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* 퀴즈 결과 화면 */
+.quiz-result-view {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.result-crest {
+    font-size: 1.1rem;
+    color: var(--gold-primary);
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.result-badge {
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    background: rgba(201, 59, 59, 0.2);
+    border: 1px solid var(--cinnabar-red);
+    color: #ff9b9b;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 1.2rem;
+}
+
+.result-title-ko {
+    font-family: var(--font-serif);
+    font-size: 2.3rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.3rem;
+}
+
+.result-title-zh {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.result-desc-box {
+    background: rgba(10, 12, 16, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    padding: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.res-ko {
+    font-size: 1.05rem;
+    color: #e2e8f0;
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+}
+
+.res-zh {
+    font-size: 0.95rem;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   푸터 섹션 / Footer
+   ========================================================================== */
+.wuxia-footer {
+    background: #06070a;
+    border-top: 1px solid var(--border-gold);
+    padding: 4rem 2rem 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.footer-brand-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--gold-bright);
+    letter-spacing: 2px;
+}
+
+.footer-quote {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 600px;
+}
+
+.footer-nav-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition-smooth);
+}
+
+.footer-nav-links a:hover {
+    color: var(--gold-bright);
+}
+
+.footer-copyright {
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   반응형 미디어 쿼리 / Responsive Media Queries
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .lore-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .sects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .weapon-tabs-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .gallery-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .simulator-layout,
+    .map-interactive-container,
+    .skills-two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 75%;
+        height: calc(100vh - 60px);
+        background: rgba(10, 12, 16, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.35s ease;
+        border-left: 1px solid var(--border-gold);
+    }
+    .nav-menu.open {
+        right: 0;
+    }
+    .mobile-menu-toggle {
+        display: block;
+    }
+    .hero-main-title {
+        font-size: 2.8rem;
+    }
+    .hero-sub-title {
+        font-size: 1.6rem;
+    }
+    .hero-meta-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .lore-grid,
+    .sects-grid,
+    .gallery-items-grid {
+        grid-template-columns: 1fr;
+    }
+    .weapon-tabs-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 애니메이션 헬퍼 */
+.anim-fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

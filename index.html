@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연운십육성 / 燕云十六声 (Where Winds Meet) - 공식 소개 및 인터랙티브 웹체험관</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts for Asian Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 동적 캔버스 배경 (흩날리는 꽃잎과 수묵 먹물 효과 / 落花与水墨流转特效) -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- 상단 네비게이션 바 / 顶部导航栏 -->
+    <header class="wuxia-navbar" id="main-navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <div class="brand-seal">燕</div>
+                <div class="brand-titles">
+                    <span class="brand-ko">연운십육성</span>
+                    <span class="brand-zh">燕云十六声</span>
+                </div>
+            </a>
+
+            <!-- 네비게이션 메뉴 (한국어 / 중국어 병기) -->
+            <ul class="nav-menu" id="nav-links-menu">
+                <li>
+                    <a href="#lore" class="nav-item-link">
+                        <span class="nav-ko">세계관 소개</span>
+                        <span class="nav-zh">世界观介绍</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#simulator" class="nav-item-link">
+                        <span class="nav-ko">무공 시뮬레이터</span>
+                        <span class="nav-zh">武学模拟器</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#weapons-sects" class="nav-item-link">
+                        <span class="nav-ko">병기 & 문파</span>
+                        <span class="nav-zh">兵器与门派</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#map" class="nav-item-link">
+                        <span class="nav-ko">강호 전도</span>
+                        <span class="nav-zh">江湖全景图</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#gallery" class="nav-item-link">
+                        <span class="nav-ko">비경 갤러리</span>
+                        <span class="nav-zh">视觉画廊</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#quiz" class="nav-item-link">
+                        <span class="nav-ko">성향 테스트</span>
+                        <span class="nav-zh">宿命测验</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- 음향 제어 및 모바일 토글 / 音效与菜单控制 -->
+            <div class="nav-actions">
+                <button class="audio-toggle-btn" id="audio-toggle-btn">
+                    🎵 음향 켜짐 / 音效开启
+                </button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="메뉴 열기 / 打开菜单">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. 히어로 메인 섹션 / 英雄封面 -->
+    <section class="hero-section" id="hero">
+        <div class="hero-overlay-wuxia"></div>
+        <div class="hero-content">
+            <div class="hero-crest-badge">
+                <span>✦</span>
+                <span>오픈월드 액션 무협 RPG / 开放世界武侠动作RPG</span>
+                <span>✦</span>
+            </div>
+
+            <h1 class="hero-main-title">
+                <span class="gold-text">연운십육성</span>
+            </h1>
+            <h2 class="hero-sub-title">燕云十六声 · Where Winds Meet</h2>
+
+            <div class="hero-poetic-slogan">
+                <span class="slogan-ko">"바람이 스치는 대지, 모든 곳이 강호이다."</span>
+                <span class="slogan-zh">"风吹过的大地，皆是江湖。"</span>
+            </div>
+
+            <div class="hero-btn-group">
+                <a href="#lore" class="btn-primary btn-click-sound">
+                    <span>⚔️ 강호 여정 시작 / 踏入江湖之旅</span>
+                </a>
+                <a href="#simulator" class="btn-secondary btn-click-sound">
+                    <span>⚡ 무공 시뮬레이터 / 体验点穴奇术</span>
+                </a>
+            </div>
+
+            <!-- 메타 수치 / 核心特色数据 -->
+            <div class="hero-meta-stats">
+                <div class="meta-stat-item">
+                    <span class="stat-icon">📜</span>
+                    <span class="stat-title-ko">오대십국 역사 배경</span>
+                    <span class="stat-title-zh">五代十国乱世</span>
+                </div>
+                <div class="meta-stat-item">
+                    <span class="stat-icon">🥋</span>
+                    <span class="stat-title-ko">자유 무학 융합</span>
+                    <span class="stat-title-zh">百家武学无拘</span>
+                </div>
+                <div class="meta-stat-item">
+                    <span class="stat-icon">🏮</span>
+                    <span class="stat-title-ko">생생한 강호 백업</span>
+                    <span class="stat-title-zh">江湖三教九流</span>
+                </div>
+                <div class="meta-stat-item">
+                    <span class="stat-icon">🏞️</span>
+                    <span class="stat-title-ko">심리스 오픈월드</span>
+                    <span class="stat-title-zh">无缝壮丽山河</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. 세계관 및 역사적 배경 섹션 / 世界观与历史背景 -->
+    <section class="wuxia-section" id="lore">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">역사적 서사 / 历史纪元</span>
+            <h2 class="section-title-ko">난세의 격랑과 연운의 숙명</h2>
+            <h3 class="section-title-zh">乱世风云 · 燕云十六州之浩劫</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">오대십국의 혼란기, 북방의 관문인 연운 16주가 거란에 할양된 비극적인 시대를 배경으로 방랑하는 무명 협객의 파란만장한 서사가 펼쳐집니다.</span>
+                <span class="desc-zh">以五代十国末期至宋初动荡风云为底色。燕云十六州沦丧敌手，群雄逐鹿、家国离乱，无名游侠逆流而上，谱写壮烈史诗。</span>
+            </div>
+        </div>
+
+        <div class="lore-grid">
+            <div class="lore-card">
+                <div class="lore-card-header">
+                    <div class="lore-seal">烽</div>
+                    <div class="lore-titles">
+                        <span class="lore-title-ko">연운 16주의 비극</span>
+                        <span class="lore-title-zh">十六州割让之殇</span>
+                    </div>
+                </div>
+                <p class="lore-body-ko">후진의 석경당이 제위를 탐하여 북방의 요충지인 연운 16주를 요나라에 할양했습니다. 이로 인해 한족의 방어선이 무너지고 수많은 민초와 강호 의사들이 끝없는 전란에 휩싸이게 되었습니다.</p>
+                <p class="lore-body-zh">后晋石敬瑭割让燕云十六州于契丹，中原屏障尽失。塞北烽烟再起，无数铁血儿女以布衣之躯抵御外侮，热血洒遍古长城残垣。</p>
+                <div class="lore-footer-badge">역사 기록 / 史海钩沉 #01</div>
+            </div>
+
+            <div class="lore-card">
+                <div class="lore-card-header">
+                    <div class="lore-seal">俠</div>
+                    <div class="lore-titles">
+                        <span class="lore-title-ko">무문무파, 천하를 품다</span>
+                        <span class="lore-title-zh">海纳百川 · 散修游侠</span>
+                    </div>
+                </div>
+                <p class="lore-body-ko">기존의 굳어진 사제 문벌 체계에서 벗어나, 주인공은 거리의 왈패, 숨은 도사, 심지어 동물들의 움직임에서도 영감을 얻어 천하 백가의 기예를 자유롭게 융합합니다.</p>
+                <p class="lore-body-zh">打破宗门藩篱，无门无派反成无上优势。师法天地自然、市井走卒，甚至观飞禽走兽自悟上乘武道，真正还原随心所欲之武侠精髓。</p>
+                <div class="lore-footer-badge">무학 철학 / 武道境界 #02</div>
+            </div>
+
+            <div class="lore-card">
+                <div class="lore-card-header">
+                    <div class="lore-seal">生</div>
+                    <div class="lore-titles">
+                        <span class="lore-title-ko">진짜 살아 숨 쉬는 강호</span>
+                        <span class="lore-title-zh">百态人生 · 烟火人间</span>
+                    </div>
+                </div>
+                <p class="lore-body-ko">단순한 칼싸움을 넘어, 의원이 되어 환자를 침으로 치료하고, 뱃사공이 되어 강을 건너며, 목수나 도굴꾼이 되는 등 다채로운 생업과 상호작용이 살아 숨 쉽니다.</p>
+                <p class="lore-body-zh">告别刻板任务。可为悬壶济世之神医行针灸之术，亦可为樊楼乐师弄琴弄萧，更有水手、木匠、摸金校尉等百业百态任君沉浸体验。</p>
+                <div class="lore-footer-badge">강호 생업 / 奇遇百业 #03</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. 인터랙티브 점혈 및 무공 시뮬레이터 / 点穴与奇术模拟器 -->
+    <section class="wuxia-section" id="simulator">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">상호작용 체험 / 交互核心</span>
+            <h2 class="section-title-ko">인체 경락 점혈 & 기공 시뮬레이터</h2>
+            <h3 class="section-title-zh">经脉穴位截击 · 奇术无双演练</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">아래 인체 경락도의 혈자리를 클릭하여 즉시 점혈 효과음을 듣고 특수 무공을 시험해 보세요!</span>
+                <span class="desc-zh">请点击下方经络图中的各处要穴，聆听清脆点穴音效，亲身体验定身、封印与气劲爆发！</span>
+            </div>
+        </div>
+
+        <div class="simulator-layout">
+            <!-- 좌측: 인체 경락도 인터랙티브 스테이지 -->
+            <div class="acupoint-interactive-stage" id="acupoint-interactive-stage">
+                <!-- SVG 인체 실루엣 -->
+                <svg class="body-silhouette-svg" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="40" r="24" stroke="#d4af37" stroke-width="2" fill="rgba(212,175,55,0.08)"/>
+                    <path d="M76 40 C76 70 85 85 100 85 C115 85 124 70 124 40" stroke="#d4af37" stroke-width="1.5"/>
+                    <path d="M100 85 L100 240" stroke="#d4af37" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M50 110 Q100 80 150 110 L165 190 L145 195 L135 125 L125 240 L135 370 L115 375 L105 260 L95 260 L85 375 L65 370 L75 240 L65 125 L55 195 L35 190 Z" 
+                          stroke="#d4af37" stroke-width="2" fill="rgba(212,175,55,0.05)"/>
+                </svg>
+                <!-- JS에서 혈자리 핀 동적 렌더링 -->
+            </div>
+
+            <!-- 우측: 점혈 설명 및 조작 패널 -->
+            <div class="acupoint-detail-box" id="acupoint-detail-box">
+                <div class="acupoint-card">
+                    <div class="card-badge">안내 / 指引提示</div>
+                    <h3 class="point-title">혈자리를 선택하세요 / 请点击经络要穴</h3>
+                    <p class="point-desc-ko">좌측 인체 경락도에서 백회혈, 단중혈, 하단전, 합곡혈, 족삼리혈 중 하나를 클릭하면 상세한 무공 원리와 효과가 표시됩니다.</p>
+                    <p class="point-desc-zh">在左侧人体经络图中点击任意穴位，即可聆听专属破穴音效并阅览实战点穴定身奇效。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 하단: 4대 기공 무공 시연 / 奇术绝技演示 -->
+        <div class="skills-showcase-wrap">
+            <div class="section-header-bilingual" style="margin-bottom: 2rem;">
+                <span class="section-seal-tag">절학 시연 / 奇术展演</span>
+                <h3 class="section-title-ko">강호 4대 절기 무공 체험</h3>
+                <h4 class="section-title-zh">燕云四大绝世神功演武</h4>
+            </div>
+
+            <div class="skills-two-col">
+                <div class="wuxia-skills-grid" id="wuxia-skills-grid">
+                    <!-- JS 동적 생성 -->
+                </div>
+                <div class="skill-demonstration-screen" id="skill-demonstration-screen">
+                    <!-- JS 애니메이션 연출 스크린 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 무기 도감 및 문파 시스템 / 兵器谱与门派录 -->
+    <section class="wuxia-section" id="weapons-sects">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">무기 & 문파 / 兵戈与门阀</span>
+            <h2 class="section-title-ko">십팔반 병기보 & 4대 문파</h2>
+            <h3 class="section-title-zh">十八般兵刃谱录 · 江湖四大势力</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">자유로운 무기 교체와 문파의 경계를 넘나드는 다채로운 전술 액션을 경험하세요.</span>
+                <span class="desc-zh">无缝切换六大特色兵刃，各门各派独门功法随心汲取，开创独属自身的无敌流派。</span>
+            </div>
+        </div>
+
+        <div class="weapons-sect-wrapper">
+            <!-- 무기 선택기 -->
+            <div class="weapon-arsenal-box">
+                <div class="weapon-tabs-list" id="weapon-tabs-list">
+                    <!-- JS 생성 -->
+                </div>
+                <div id="weapon-active-display">
+                    <!-- JS 활성 무기 표시 -->
+                </div>
+            </div>
+
+            <!-- 문파 소개 카드 그리드 -->
+            <div>
+                <div class="section-header-bilingual" style="margin-bottom: 2rem;">
+                    <h3 class="section-title-ko">주요 강호 세력 및 문파</h3>
+                    <h4 class="section-title-zh">纷乱江湖门派势力志</h4>
+                </div>
+                <div class="sects-grid" id="sects-grid-container">
+                    <!-- JS 생성 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 강호 전도 인터랙티브 지도 / 交互式江湖地理图 -->
+    <section class="wuxia-section" id="map">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">강호 답파 / 江湖舆图</span>
+            <h2 class="section-title-ko">인터랙티브 강호 전도</h2>
+            <h3 class="section-title-zh">燕云山河探秘 · 交互式地理全景</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">청하의 푸른 대숲부터 개봉의 번화한 저잣거리, 연운의 황량한 변경까지 지도를 클릭하여 탐험하세요.</span>
+                <span class="desc-zh">点击地图上的各处探险坐标，深入了解清河竹海、开封繁城与燕云大漠的险阻与奇遇。</span>
+            </div>
+        </div>
+
+        <div class="map-interactive-container">
+            <!-- 지도 뷰포트 -->
+            <div class="map-viewport" id="map-viewport">
+                <div class="map-cartography-grid"></div>
+                <div id="map-markers-layer">
+                    <!-- JS 마커 렌더링 -->
+                </div>
+            </div>
+
+            <!-- 지역 상세 설명 -->
+            <div class="map-region-info" id="map-region-info">
+                <!-- JS 상세 정보 렌더링 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 비경 갤러리 및 라이트박스 / 视觉画廊与全屏赏析 -->
+    <section class="wuxia-section" id="gallery">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">시각 화랑 / 视觉奇观</span>
+            <h2 class="section-title-ko">고화질 비경 화랑 & 포토모드</h2>
+            <h3 class="section-title-zh">绝美江湖画卷 · 高清摄影大赏</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">동양화의 묵향과 실사 그래픽이 어우러진 연운십육성의 수려한 풍경과 전투 순간을 감상하세요.</span>
+                <span class="desc-zh">水墨写意与写实光影交相辉映，点击任意画作即可开启全屏大图模式尽览细节之美。</span>
+            </div>
+        </div>
+
+        <!-- 카테고리 필터 버튼 -->
+        <div class="gallery-filter-bar">
+            <button class="gallery-filter-btn active" data-filter="all">전체 / 全部</button>
+            <button class="gallery-filter-btn" data-filter="combat">전투 무공 / 战斗动作</button>
+            <button class="gallery-filter-btn" data-filter="scenery">강호 절경 / 江湖美景</button>
+            <button class="gallery-filter-btn" data-filter="heroes">인물 협객 / 侠士风采</button>
+        </div>
+
+        <!-- 갤러리 그리드 -->
+        <div class="gallery-items-grid" id="gallery-items-grid">
+            <!-- JS 동적 생성 -->
+        </div>
+    </section>
+
+    <!-- 7. 강호 심리 퀴즈 섹션 / 江湖宿命测验 -->
+    <section class="wuxia-section" id="quiz">
+        <div class="section-header-bilingual">
+            <span class="section-seal-tag">심리 퀴즈 / 宿命试炼</span>
+            <h2 class="section-title-ko">강호 협객 성향 테스트</h2>
+            <h3 class="section-title-zh">测一测：你在燕云乱世中的侠客身份？</h3>
+            <div class="section-desc-bilingual">
+                <span class="desc-ko">4가지 긴박한 강호 상황에서 당신의 선택을 통해 당신의 협객 유형과 어울리는 문파를 찾아보세요!</span>
+                <span class="desc-zh">历经四重江湖道义决断，测出你的天命侠格与最适宜的归宿门派！</span>
+            </div>
+        </div>
+
+        <div class="quiz-wrapper">
+            <div class="quiz-interactive-card" id="quiz-interactive-card">
+                <!-- JS 퀴즈 렌더링 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 라이트박스 모달 / 全屏画廊模态框 -->
+    <div class="gallery-lightbox-modal" id="gallery-lightbox-modal">
+        <div class="lightbox-content-wrap">
+            <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="닫기 / 关闭">✕</button>
+            <button class="lightbox-nav-btn prev" onclick="prevLightbox()" aria-label="이전 / 上一张">‹</button>
+            <button class="lightbox-nav-btn next" onclick="nextLightbox()" aria-label="다음 / 下一张">›</button>
+            <div class="lightbox-img-box">
+                <img id="lightbox-image" src="" alt="갤러리 확대 / 画卷放大">
+            </div>
+            <div class="lightbox-caption-box">
+                <h3 id="lightbox-title-ko"></h3>
+                <h4 id="lightbox-title-zh"></h4>
+                <p id="lightbox-desc-ko" class="desc-ko"></p>
+                <p id="lightbox-desc-zh" class="desc-zh"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 푸터 / 底部页脚 -->
+    <footer class="wuxia-footer">
+        <div class="footer-inner">
+            <div class="footer-brand-title">연운십육성 · 燕云十六声 (Where Winds Meet)</div>
+            <p class="footer-quote">
+                "천하의 바람이 머무는 곳에 칼끝의 노래가 울려 퍼진다."<br>
+                "天下风云聚散，刀剑长鸣处，皆为侠道之始。"
+            </p>
+            <div class="footer-nav-links">
+                <a href="#hero">처음으로 / 返回顶部</a>
+                <a href="#lore">세계관 / 背景故事</a>
+                <a href="#simulator">점혈 & 무공 / 点穴模拟</a>
+                <a href="#weapons-sects">병기 도감 / 兵器谱</a>
+                <a href="#map">강호 지도 / 区域全景</a>
+                <a href="#quiz">성향 테스트 / 宿命测验</a>
+            </div>
+            <div class="footer-copyright">
+                © 2026 연운십육성 한국어·중국어 공식 체험관 | Google Antigravity 제작 | 燕云十六声 双语体验馆
+            </div>
+        </div>
+    </footer>
+
+    <!-- 자바스크립트 모듈 로드 -->
+    <script src="js/audio.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/skills.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
